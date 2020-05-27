@@ -1,0 +1,6 @@
+C:\Users\57318\source\repos\Proyecto final arquitectura\Proyecto final arquitectura\bin\Debug\Proyecto final arquitectura.exe.config
+C:\Users\57318\source\repos\Proyecto final arquitectura\Proyecto final arquitectura\bin\Debug\Proyecto final arquitectura.exe
+C:\Users\57318\source\repos\Proyecto final arquitectura\Proyecto final arquitectura\bin\Debug\Proyecto final arquitectura.pdb
+C:\Users\57318\source\repos\Proyecto final arquitectura\Proyecto final arquitectura\obj\Debug\Proyecto final arquitectura.csprojAssemblyReference.cache
+C:\Users\57318\source\repos\Proyecto final arquitectura\Proyecto final arquitectura\obj\Debug\Proyecto final arquitectura.exe
+C:\Users\57318\source\repos\Proyecto final arquitectura\Proyecto final arquitectura\obj\Debug\Proyecto final arquitectura.pdb
