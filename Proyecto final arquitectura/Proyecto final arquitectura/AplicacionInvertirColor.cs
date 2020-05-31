@@ -4,25 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+
 namespace Proyecto_final_arquitectura
 {
     class AplicacionInvertirColor
     { 
     
-        public const String img1500X1500 = "C:\\Users\\57318\\source\\repos\\Proyecto final arquitectura\\Proyecto final arquitectura\\data\\imagen_Uno.png";
+        public const String imagenEntrada = "C:\\Users\\57318\\Documents\\ICESI\\2020-1\\arqui\\final arqui\\Arqui\\Proyecto final arquitectura\\Proyecto final arquitectura\\data\\imagenesOriginales\\imagen2-1500x1500-8 bits.png";
+        public const String imagenSalida = "C:\\Users\\57318\\Documents\\ICESI\\2020-1\\arqui\\final arqui\\Arqui\\Proyecto final arquitectura\\Proyecto final arquitectura\\data\\imagenesInvertidas\\imagen2Invertida-1500x1500-8 bits-a4.png";
+        public const String direccion_Resultados = "C:\\Users\\57318\\Documents\\ICESI\\2020-1\\arqui\\final arqui\\Arqui\\Proyecto final arquitectura\\Proyecto final arquitectura\\data\\pruebas\\pruebasAlgoritmo4\\Resultados-imagen2-1500x1500-8 bits.txt";
+
         private Bitmap bmp;
 
         public void Init()
         {
-            bmp = new Bitmap(img1500X1500);
+            bmp = new Bitmap(imagenEntrada);
       
         }
 
-        public void AlgoritmoUno() 
+        public long AlgoritmoUno() 
         {
+
             int rows = bmp.Height;
             int colums = bmp.Width;
+            Stopwatch sw = new Stopwatch();
+            sw.Restart();
+            sw.Start();
             for (int i = 0; i < rows; i++) { 
                 for( int j = 0; j < colums; j++)
                 {
@@ -35,14 +45,21 @@ namespace Proyecto_final_arquitectura
                     bmp.SetPixel(i, j, Color.FromArgb(c.A, red, green, blue));
                 }
             }
+            sw.Stop();
+            long tiempo = (long)(sw.Elapsed.TotalMilliseconds * 1000000);
+            bmp.Save(imagenSalida);
+           
+            return tiempo;
 
-            bmp.Save("C:\\Users\\57318\\source\\repos\\Proyecto final arquitectura\\Proyecto final arquitectura\\data\\imagen_Uno_Invertida.png");
         }
 
-        public void AlgoritmoDos()
+        public long AlgoritmoDos()
         {
             int rows = bmp.Height;
             int colums = bmp.Width;
+            Stopwatch sw = new Stopwatch();
+            sw.Restart();
+            sw.Start();
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < colums; j++)
@@ -78,13 +95,19 @@ namespace Proyecto_final_arquitectura
                 }
             }
 
-            bmp.Save("C:\\Users\\57318\\source\\repos\\Proyecto final arquitectura\\Proyecto final arquitectura\\data\\imagen_Uno_Invertido-algoritmo2.png");
+            sw.Stop();
+            long tiempo = (long)(sw.Elapsed.TotalMilliseconds * 1000000);
+            bmp.Save(imagenSalida);
+            return tiempo;
         }
 
-        public void AlgoritmoTres()
+        public long AlgoritmoTres()
         {
             int rows = bmp.Height;
             int colums = bmp.Width;
+            Stopwatch sw = new Stopwatch();
+            sw.Restart();
+            sw.Start();
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < colums; j++)
@@ -99,13 +122,19 @@ namespace Proyecto_final_arquitectura
                 }
             }
 
-            bmp.Save("C:\\Users\\57318\\source\\repos\\Proyecto final arquitectura\\Proyecto final arquitectura\\data\\imagen_Uno_Invertida-algoritmo3.png");
+            sw.Stop();
+            long tiempo = (long)(sw.Elapsed.TotalMilliseconds * 1000000);
+            bmp.Save(imagenSalida);
+            return tiempo;
         }
 
-        public void AlgoritmoCuatro()
+        public long AlgoritmoCuatro()
         {
             int rows = bmp.Height;
             int colums = bmp.Width;
+            Stopwatch sw = new Stopwatch();
+            sw.Restart();
+            sw.Start();
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < colums; j++)
@@ -130,15 +159,20 @@ namespace Proyecto_final_arquitectura
                     bmp.SetPixel(i, j, Color.FromArgb(c.A, c.R, green, blue));
                 }
             }
-            bmp.Save("C:\\Users\\57318\\source\\repos\\Proyecto final arquitectura\\Proyecto final arquitectura\\data\\imagen_Uno_Invertida-algoritmo4.png");
-
+            sw.Stop();
+            long tiempo = (long)(sw.Elapsed.TotalMilliseconds * 1000000);
+            bmp.Save(imagenSalida);
+            return tiempo;
         }
 
-        public void AlgoritmoCinco()
+        public long AlgoritmoCinco()
         {
             int rows = bmp.Height;
             int columns = bmp.Width;
-            for(int i = 0; i < rows; i = i+2)
+            Stopwatch sw = new Stopwatch();
+            sw.Restart();
+            sw.Start();
+            for (int i = 0; i < rows; i = i+2)
             {
                 for(int j = 0; j < columns; j = j+2)
                 {
@@ -188,7 +222,54 @@ namespace Proyecto_final_arquitectura
                     }
                 }
             }
-            bmp.Save("C:\\Users\\57318\\source\\repos\\Proyecto final arquitectura\\Proyecto final arquitectura\\data\\imagen_Uno_Invertida-algoritmo5.png");
+            sw.Stop();
+            long tiempo = (long)(sw.Elapsed.TotalMilliseconds * 1000000);
+            bmp.Save(imagenSalida);
+            return tiempo;
+        }
+
+        public void Pruebas(int algoritmo) 
+        {
+                StreamWriter sw = new StreamWriter(direccion_Resultados);
+
+            if (algoritmo == 1)
+            {
+                for (int i = 1; i < 150; i++)
+                {
+                    sw.WriteLine(AlgoritmoUno());
+                }
+            }
+            else if (algoritmo == 2)
+            {
+                for (int i = 1; i < 100; i++)
+                {
+                    sw.WriteLine(AlgoritmoDos());
+                }
+            }
+            else if (algoritmo == 3)
+            {
+                for (int i = 1; i < 100; i++)
+                {
+                    sw.WriteLine(AlgoritmoTres());
+                }
+            }
+            else if (algoritmo == 4)
+            {
+                for (int i = 1; i < 100; i++)
+                {
+                    sw.WriteLine(AlgoritmoCuatro());
+                }
+            }
+            else if (algoritmo == 5)
+            {
+                for (int i = 1; i < 100; i++)
+                {
+                    sw.WriteLine(AlgoritmoCinco());
+                }
+            }
+
+            sw.Close();
+
         }
 
         static void Main(string[] args)
@@ -202,9 +283,11 @@ namespace Proyecto_final_arquitectura
             //aplicacion.AlgoritmoTres();
             //aplicacion.Init();
             //aplicacion.AlgoritmoCuatro();
+            //aplicacion.Init();
+            //aplicacion.AlgoritmoCinco();
+            //Console.WriteLine("hola mundo");
             aplicacion.Init();
-            aplicacion.AlgoritmoCinco();
-            Console.WriteLine("hola mundo");
+            aplicacion.Pruebas(5);
         }
     }
    
